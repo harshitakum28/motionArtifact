@@ -1,0 +1,63 @@
+Using device: cpu
+WARNING: CUDA is not available! Training will fall back to CPU. Please turn on GPU in Kaggle Notebook settings (Accelerator -> GPU).
+No train/val folders found in C:\Users\bitpa\OneDrive\Desktop\kaggle dataset\data or sanity_overfit enabled.
+SANITY OVERFIT MODE: Using 1 subject for both training and validation.
+Initializing Stage 2: Artifact-Guided Reconstructor...
+Warning: No valid Stage 1 checkpoint provided. Using untrained Stage 1 model!
+
+==================================================
+STAGE 2 ARCHITECTURE & EQUATIONS
+==================================================
+Stage-2 prediction type: Raw Correction Map
+Residual scale: 0.25
+Stage-2 reconstruction equation: Final = HM2 + (0.25 * PredictedCorrection)
+GT correction target equation: Implicit (Loss on Final = Clean)
+==================================================
+
+Stage 2 Train Epoch 1:   0%|          | 0/8 [00:00<?, ?it/s]Stage 2 Train Epoch 1:   0%|          | 0/8 [01:50<?, ?it/s]
+Traceback (most recent call last):
+  File "C:\Users\bitpa\OneDrive\Desktop\cordinate attention module\MRI_Artifact_Framework\scripts\train.py", line 244, in <module>
+    main()
+    ~~~~^^
+  File "C:\Users\bitpa\OneDrive\Desktop\cordinate attention module\MRI_Artifact_Framework\scripts\train.py", line 241, in main
+    trainer.train(resume_path=args.resume_checkpoint if args.resume_checkpoint else None)
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bitpa\OneDrive\Desktop\cordinate attention module\MRI_Artifact_Framework\trainers\trainer.py", line 56, in train
+    train_loss = self.train_epoch()
+  File "C:\Users\bitpa\OneDrive\Desktop\cordinate attention module\MRI_Artifact_Framework\trainers\train_stage2.py", line 58, in train_epoch
+    for batch in pbar:
+                 ^^^^
+  File "C:\Users\bitpa\AppData\Roaming\Python\Python314\site-packages\tqdm\std.py", line 1181, in __iter__
+    for obj in iterable:
+               ^^^^^^^^
+  File "C:\Program Files\Python314\Lib\site-packages\torch\utils\data\dataloader.py", line 725, in __next__
+    data = self._next_data()
+  File "C:\Program Files\Python314\Lib\site-packages\torch\utils\data\dataloader.py", line 1529, in _next_data
+    return self._process_data(data, worker_id)
+           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python314\Lib\site-packages\torch\utils\data\dataloader.py", line 1567, in _process_data
+    data.reraise()
+    ~~~~~~~~~~~~^^
+  File "C:\Program Files\Python314\Lib\site-packages\torch\_utils.py", line 793, in reraise
+    raise RuntimeError(msg) from None
+RuntimeError: Caught MemoryError in DataLoader worker process 0.
+Original Traceback (most recent call last):
+  File "C:\Program Files\Python314\Lib\site-packages\torch\utils\data\_utils\worker.py", line 374, in _worker_loop
+    data = fetcher.fetch(index)  # type: ignore[possibly-undefined]
+  File "C:\Program Files\Python314\Lib\site-packages\torch\utils\data\_utils\fetch.py", line 54, in fetch
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+            ~~~~~~~~~~~~^^^^^
+  File "C:\Users\bitpa\OneDrive\Desktop\cordinate attention module\MRI_Artifact_Framework\datasets\dataset.py", line 81, in __getitem__
+    'clean': np.load(clean_path),
+             ~~~~~~~^^^^^^^^^^^^
+  File "C:\Users\bitpa\AppData\Roaming\Python\Python314\site-packages\numpy\lib\_npyio_impl.py", line 483, in load
+    return format.read_array(fid, allow_pickle=allow_pickle,
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                             pickle_kwargs=pickle_kwargs,
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                             max_header_size=max_header_size)
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bitpa\AppData\Roaming\Python\Python314\site-packages\numpy\lib\_format_impl.py", line 849, in read_array
+    array = numpy.fromfile(fp, dtype=dtype, count=count)
+numpy._core._exceptions._ArrayMemoryError: Unable to allocate 3.06 MiB for an array with shape (802816,) and data type float32
+

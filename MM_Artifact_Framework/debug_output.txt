@@ -1,0 +1,17 @@
+Using device: cpu
+WARNING: CUDA is not available! Training will fall back to CPU. Please turn on GPU in Kaggle Notebook settings (Accelerator -> GPU).
+No train/val folders found in C:\Users\bitpa\OneDrive\Desktop\kaggle dataset\data or sanity_overfit enabled.
+SANITY OVERFIT MODE: Using 1 subject for both training and validation.
+Initializing Stage 2: Artifact-Guided Reconstructor...
+Warning: No valid Stage 1 checkpoint provided. Using untrained Stage 1 model!
+
+==================================================
+STAGE 2 ARCHITECTURE & EQUATIONS
+==================================================
+Stage-2 prediction type: Raw Correction Map
+Residual scale: 0.25
+Stage-2 reconstruction equation: Final = HM2 + (0.25 * PredictedCorrection)
+GT correction target equation: Implicit (Loss on Final = Clean)
+==================================================
+
+Stage 2 Train Epoch 1:   0%|          | 0/8 [00:00<?, ?it/s]
